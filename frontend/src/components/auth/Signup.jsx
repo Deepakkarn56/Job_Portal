@@ -31,6 +31,11 @@ const Signup = () => {
     }
     const changeFileHandler = (e) => {
         setInput({ ...input, file: e.target.files?.[0] });
+        // const img = {
+        //     preview: URL.createObjectURL(e.target.files[0]),
+        //     data: e.target.files[0],
+        //   }
+        //   setInput({...input, file: img });
     }
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -41,7 +46,11 @@ const Signup = () => {
         formData.append("password", input.password);
         formData.append("role", input.role);
         if (input.file) {
-            formData.append("file", input.file);
+            formData.append("file", typeof input.file);
+            console.log(input.file);
+        }
+        else {
+            console.log("no file")
         }
 
         try {
